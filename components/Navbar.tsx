@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FC } from 'react'
 
 function NavLink({ to, children }) {
   return (
@@ -49,7 +49,7 @@ function MobileNav({ open, setOpen }) {
   )
 }
 
-export default function Navbar() {
+const Navbar: FC = () => {
   const [open, setOpen] = useState(false)
   return (
     <nav className="flex h-20 items-center bg-white px-8 py-4 drop-shadow-md">
@@ -94,3 +94,4 @@ export default function Navbar() {
     </nav>
   )
 }
+export default Navbar
