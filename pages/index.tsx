@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 
 const Home: NextPage = () => {
@@ -11,7 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-
+      <Header />
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center"></main>
       <footer className="flex h-24 w-full items-center justify-center border-t">
         <a

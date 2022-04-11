@@ -1,6 +1,8 @@
-import { useState, FC } from 'react'
+import React, { useState, FC, SetStateAction, Dispatch } from 'react'
+import Image from 'next/image'
+import headerPic from '/images/header-person.png'
 
-function NavLink({ to, children }) {
+function NavLink({ to, children }: { to: string; children: string }) {
   return (
     <a href={to} className={`mx-4`}>
       {children}
@@ -8,7 +10,13 @@ function NavLink({ to, children }) {
   )
 }
 
-function MobileNav({ open, setOpen }) {
+function MobileNav({
+  open,
+  setOpen,
+}: {
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+}) {
   return (
     <div
       className={`absolute top-0 left-0 h-screen w-screen transform bg-white ${
@@ -52,46 +60,48 @@ function MobileNav({ open, setOpen }) {
 const Navbar: FC = () => {
   const [open, setOpen] = useState(false)
   return (
-    <nav className="flex h-20 items-center bg-white px-8 py-4 drop-shadow-md">
-      <MobileNav open={open} setOpen={setOpen} />
-      <div className="flex w-full items-center">
-        <a className="text-2xl font-semibold" href="/">
-          Personal Stylist Landing
-        </a>
-      </div>
-      <div className="flex w-9/12 items-center justify-end">
-        <div
-          className="relative z-50 flex h-8 w-8 flex-col items-center justify-between md:hidden"
-          onClick={() => {
-            setOpen(!open)
-          }}
-        >
-          {/* hamburger button */}
-          <span
-            className={`h-1 w-full transform rounded-lg bg-black transition duration-300 ease-in-out ${
-              open ? 'translate-y-3.5 rotate-45' : ''
-            }`}
-          />
-          <span
-            className={`h-1 w-full rounded-lg bg-black transition-all duration-300 ease-in-out ${
-              open ? 'w-0' : 'w-full'
-            }`}
-          />
-          <span
-            className={`h-1 w-full transform rounded-lg bg-black transition duration-300 ease-in-out ${
-              open ? '-translate-y-3.5 -rotate-45' : ''
-            }`}
-          />
+    <div className="z-50 ">
+      <nav className="flex h-20 items-center bg-white px-8 py-4 drop-shadow-md">
+        <MobileNav open={open} setOpen={setOpen} />
+        <div className="flex w-full items-center">
+          <a className="text-2xl font-semibold" href="/">
+            Personal Stylist Landing
+          </a>
         </div>
+        <div className="flex w-9/12 items-center justify-end">
+          <div
+            className="relative z-50 flex h-8 w-8 flex-col items-center justify-between md:hidden"
+            onClick={() => {
+              setOpen(!open)
+            }}
+          >
+            {/* hamburger button */}
+            <span
+              className={`h-1 w-full transform rounded-lg bg-black transition duration-300 ease-in-out ${
+                open ? 'translate-y-3.5 rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`h-1 w-full rounded-lg bg-black transition-all duration-300 ease-in-out ${
+                open ? 'w-0' : 'w-full'
+              }`}
+            />
+            <span
+              className={`h-1 w-full transform rounded-lg bg-black transition duration-300 ease-in-out ${
+                open ? '-translate-y-3.5 -rotate-45' : ''
+              }`}
+            />
+          </div>
 
-        <div className="hidden md:flex">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <div className="hidden md:flex">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/blog">Blog</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 export default Navbar
